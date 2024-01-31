@@ -1,21 +1,22 @@
 <script>
   import axios from "axios";
   import { push } from "svelte-spa-router";
-  import { isLoggedIn, token } from './store';
+  import { isLoggedIn, token, username } from './store';
   import IoIosEye from 'svelte-icons/io/IoIosEye.svelte';
   import IoIosEyeOff from 'svelte-icons/io/IoIosEyeOff.svelte';
 
-  let username = "";
+  let usernameInput = "";
   let password = "";
   let showPassword = false;
   let passwordInput; // Referenz zum Input-Element
 
   async function loginUser() {
     try {
-      const response = await axios.post("http://localhost:3001/login", { username, password });
+      const response = await axios.post("http://localhost:3001/login", { username: usernameInput, password });
       console.log("Login erfolgreich:", response);
       token.set(response.data.token);
       isLoggedIn.set(true);
+      username.update(prev => usernameInput);
       push("/raumdata");
     } catch (error) {
       console.error("Fehler beim Login:", error);
@@ -56,38 +57,22 @@
       <h1>Login</h1>
 
       <div>
-        <input id="username" bind:value={username} placeholder="Benutzername" />
+        <label for="username">Benutzername:</label>
+        <input id="username" type="text" bind:value={usernameInput} />
       </div>
-      <div class="password-container">
-        <input id="password"
-          bind:this={passwordInput}
-          value={password}
-          type={showPassword ? 'text' : 'password'}
-          placeholder="Passwort"
-          on:blur|preventDefault={() => {}}
-          on:input={() => { password = passwordInput.value; }}
-        />
-        <div
-          class="show-password"
-          on:click={togglePasswordVisibility}
-          on:keydown={handlePasswordIconKeyDown}
-          tabindex="0"
-          role="button"
-          style="position: absolute; top: 40%; right: 10px; transform: translateY(-50%); cursor: pointer; width: 20px; text-align: center; color:gray;"
-        >
-          {#if showPassword}
-            <IoIosEyeOff />
-          {:else}
-            <IoIosEye />
-          {/if}
-        </div>
+      <div>
+        <label for="password">Passwort:</label>
+        <input id="password" type="password" bind:value={password} />
       </div>
-      <button type="submit">Anmelden</button>
+      <button type="submit">Einloggen</button>
     </form>
   {:else}
-    <!-- Add content for logged-in user here -->
+    <!-- Hier können zusätzliche Inhalte für eingeloggte Benutzer hinzugefügt werden -->
+    <!-- <AddEsp {$username} /> -->
+    <!-- <button on:click={logoutUser}>Ausloggen</button> -->
   {/if}
 </div>
+
 
 <style>
   .container {
@@ -113,10 +98,10 @@
     color: #ffffff;
   }
 
-  .password-container {
+  /* .password-container {
     display: flex;
     position: relative;
-  }
+  } */
   
     input {
     width: calc(100% - 0px);
@@ -142,7 +127,7 @@
     }
   }
 
-  .show-password {
+  /* .show-password {
     position: absolute;
     top: 50%;
     right: 0;
@@ -150,7 +135,7 @@
     cursor: pointer;
     width: 20px;
     text-align: center;
-  }
+  } */
   
     button {
     width: 100%; /* Breite des Buttons und der Inputfelder gleich setzen */
@@ -176,4 +161,3 @@
       margin-bottom: 40px;
     }
   </style>
-  

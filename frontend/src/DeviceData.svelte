@@ -167,14 +167,28 @@
 </script>
 
 <style>
+  .chart-container-group {
+    display: flex;
+    flex-wrap: wrap; /* Umbruch der Raum-Container bei Bedarf */
+    justify-content: space-around; /* Zentriert die Raum-Container horizontal */
+    margin: 40px 0 60px; /* Setzt den Margin oben und unten */
+  }
   .chart-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    margin: 15px 5px;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative; /* Positionierung für das Hintergrundbild */
+    overflow: hidden; /* Verhindert das Überlaufen des Hintergrundbilds */
+    z-index: 0;
   }
 
   .chart-card {
-    width: 90%; /* Breite der Karten anpassen */
+    width: 100%; /* Breite der Karten anpassen */
     margin: 10px 0;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -194,6 +208,7 @@
   }
 </style>
 
+<div class="chart-container-group">
 <div class="chart-container">
   <div class="chart-card">
     <div class="chart-title">Temperatur</div>
@@ -215,4 +230,5 @@
     <canvas bind:this={co2ChartContainer}></canvas>
     <p>Live CO2: {liveCo2} ppm</p>
   </div>
+</div>
 </div>

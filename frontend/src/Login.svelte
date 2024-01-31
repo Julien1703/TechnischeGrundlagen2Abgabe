@@ -57,12 +57,10 @@
       <h1>Login</h1>
 
       <div>
-        <label for="username">Benutzername:</label>
-        <input id="username" type="text" bind:value={usernameInput} />
+        <input id="username" placeholder="Benutzername" type="text" bind:value={usernameInput} />
       </div>
       <div>
-        <label for="password">Passwort:</label>
-        <input id="password" type="password" bind:value={password} />
+        <input id="password" placeholder="Password" type="password" bind:value={password} />
       </div>
       <button type="submit">Einloggen</button>
     </form>

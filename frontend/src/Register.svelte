@@ -104,7 +104,7 @@
 
       token.set(loginResponse.data.token);
       isLoggedIn.set(true);
-      push("/raumdata");
+      push("#/login");
     } catch (error) {
       console.error("Error during registration and login:", error);
     }

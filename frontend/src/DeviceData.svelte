@@ -124,13 +124,15 @@
           },
           x: {
             ticks: {
-              callback: function(value, index, values) {
-                if (index === 0 || index === values.length - 1) {
-                  return value;
-                }
-                return null;
-              }
-            }
+  callback: function(value, index, values) {
+    if (index === values.length - 1) {
+      return 'aktuell';
+    } else if (index === 0) {
+      return 'vor einer Minute';
+    }
+    return null;
+  }
+}
           }
         },
         plugins: {
@@ -189,7 +191,7 @@
   .chart-card {
     width: 100%; /* Breite der Karten anpassen */
     margin: 10px 0;
-    background: white;
+    background: linear-gradient(to bottom, #00cab9 0%, #00cab9 15%, #ffffff 15%, #ffffff);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 10px;
@@ -200,6 +202,7 @@
     text-align: center;
     margin-bottom: 10px;
     font-weight: bold;
+    color: #ffffff;
   }
 
   canvas {

@@ -172,6 +172,7 @@
     flex-wrap: wrap; /* Umbruch der Raum-Container bei Bedarf */
     justify-content: space-around; /* Zentriert die Raum-Container horizontal */
     margin: 40px 0 60px; /* Setzt den Margin oben und unten */
+  
   }
   .chart-container {
     display: flex;
@@ -179,8 +180,6 @@
     align-items: flex-start;
     margin: 15px 5px;
     border-radius: 15px;
-    background: white;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     position: relative; /* Positionierung für das Hintergrundbild */
     overflow: hidden; /* Verhindert das Überlaufen des Hintergrundbilds */
@@ -190,6 +189,7 @@
   .chart-card {
     width: 100%; /* Breite der Karten anpassen */
     margin: 10px 0;
+    background: white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 10px;
@@ -205,6 +205,7 @@
   canvas {
     max-width: 100%;
     height: auto;
+    color: #00000000;
   }
 </style>
 

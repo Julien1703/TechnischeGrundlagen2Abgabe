@@ -33,6 +33,22 @@
   }
 </script>
 
+<header>
+  <!-- Flex container for logo and logout -->
+  <div class="header-content">
+    <!-- SVG-Logo oben links -->
+    <div class="logo">
+      <img src="/images/LogoNew.svg" alt="Aeroom Logo">
+      <img class="aeroom" src="/images/aeroom4.svg" alt="Aeroom">
+    </div>
+
+    <button class="user-logout" on:click={logoutUser} style="background: transparent; border: none;">
+      <!-- <IoMdLogOut class="logout-icon"/> -->
+      <span class="header-text">Logout</span>
+    </button>
+  </div>
+</header>
+
 <footer>
   {#if $isLoggedIn}
     <a href="#/raumdata" class="footer-link">
@@ -47,7 +63,7 @@
       <IoIosAddCircleOutline style="width: 24px; height: 24px;"/>
       <span class="footer-text">Hinzufügen</span>
     </a>
-    <!-- <a href="#/login" on:click={logoutUser}><IoMdLogOut/></a> -->
+    
   {:else}
     <a href="#/login" style="color: white;">Login</a>
     <a href="#/register" style="color: white;">Register</a>
@@ -58,25 +74,85 @@
 </main>
 
 <style>
+  .header-content {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    padding: 4px 0px;
+    width: 100%;
+  }
 
-  :global(#small-button) {
-  --unit: 40px;
-  padding: var(--unit);
-  height: calc(4 * var(--unit));
-  width: calc(4 * var(--unit));
-}
+  .aeroom {
+    margin-right: 300px;
+    margin-top: 4px;
+    height: 80%;
+  }
 
-:global(#small-button svg) {
-  width: calc(2 * var(--unit));
-  height: calc(2 * var(--unit));
-}
+  .logo {
+    margin-right: -50px;
+  }
+
+  .logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px; /* Adjusted */
+  }
+
+  .logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px; /* Adjusted */
+  }
+
+  .user-logout {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(202, 202, 202);
+  }
+
+  /* .logout-icon {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+    color: rgb(202, 202, 202);
+  }
+
+  // .logout-icon :global(svg) {
+    width: 18px;
+    height: 18px;
+  } */
+
+  .header-text {
+    margin-right: 46px;
+  }
+
+  .user-logout:hover {
+    text-decoration: none;
+    color: #ffffff;
+  }
+
+  header {
+    background-color: rgba(1, 187, 147, 0.95); /* 95% Transparenz */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 20px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 8%;
+    z-index: 2;
+    backdrop-filter: blur(10px); /* Hintergrund-Blur mit 10 Pixel */
+  }
 
   footer {
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
     display: flex;
     justify-content: space-around;
-    background-color: #007bff;
+    background-color: rgba(1, 187, 147, 0.95); /* 95% Transparenz */
     padding: 10px 0;
     text-align: center;
     position: fixed;
@@ -84,6 +160,7 @@
     width: 100%;
     height: 8%;
     z-index: 2;
+    backdrop-filter: blur(10px); /* Hintergrund-Blur mit 10 Pixel */
   }
 
   .footer-link {
@@ -107,11 +184,12 @@
   .footer-text {
     font-size: 12px;
     margin-top: 2px;
-    font-weight: normal; /* Startwert */
+    margin-right: 0;
+    font-weight: lighter; /* Startwert */
   }
 
   .footer-link:hover .footer-text {
-    font-weight: bold; /* Ändern Sie dies nach Bedarf */
+    font-weight: normal; /* Ändern Sie dies nach Bedarf */
   }
 
   main {
@@ -120,12 +198,12 @@
     margin-bottom: 60px; /* Platz für den Footer */
   }
 
-  :global(html), :global(body) {
+  :global(html),
+  :global(body) {
     margin: 0;
     padding: 0;
     height: 100%;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    background:#a9e6d9
   }
 </style>

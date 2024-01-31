@@ -24,7 +24,7 @@
   });
 
   const viewDetailsForRoom = (mac) => {
-    push(`/devicedata/${mac}`);
+    push(`#/devicedata/${mac}`);
   };
 
   // Funktion zum Ermitteln des Bildpfads basierend auf dem Raumnamen
@@ -51,6 +51,13 @@
 </script>
 
 <style>
+  .raum-container-group {
+    display: flex;
+    flex-wrap: wrap; /* Umbruch der Raum-Container bei Bedarf */
+    justify-content: space-around; /* Zentriert die Raum-Container horizontal */
+    margin: 40px 0 60px; /* Setzt den Margin oben und unten */
+  }
+
   .raum-container {
     display: flex;
     flex-direction: column;
@@ -59,7 +66,7 @@
     padding: 0px;
     padding-top: 0px;
     border-radius: 15px;
-    background-color: #f5f5f5;
+    background: linear-gradient(to bottom, #00cab9 0%, #00cab9 19.5%, #ffffff 19.5%, #ffffff);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     position: relative; /* Positionierung für das Hintergrundbild */
@@ -74,7 +81,8 @@
 
   .raum-data {
     font-size: 20px;
-    color: #333;
+    color: #ffffff;
+    font-weight: bold;
     padding: 15px 20px 10px;
     margin: 0; /* Setze den margin auf 0 */
     margin-bottom: 0px;
@@ -85,13 +93,13 @@
     padding: 15px 24px;
     border: none;
     border-radius: 10px;
-    background-color: #007bff;
+    background: linear-gradient(to bottom, #00cab9 ,#00b1a2);
     color: white;
     cursor: pointer;
     font-size: 16px;
     margin-left: 20px;
     margin-right: 20px;
-    margin-top: 46px;
+    margin-top: 15px;
     margin-bottom: 15px;
     z-index: 1;
     transition: background-color 0.3s, transform 0.3s;
@@ -115,16 +123,16 @@
 </style>
 
 <!-- HTML Teil -->
-<div>
+<div class="raum-container-group">
   {#if raumData.length > 0}
-    <h2>Deine ærooms</h2>
+    <h2>Deine æRooms</h2>
     {#each raumData as raum}
       <div class="raum-container">
         <p class="raum-data">{raum?._id}</p>
         <div class="raum-background" style={`background-image: url(${getImagePath(raum)})`}></div>
         <!-- Annahme: raum.devices enthält eine Liste der Geräte im Raum -->
         {#if raum.devices.length > 0}
-          <button on:click={() => viewDetailsForRoom(raum.devices[0].mac)}>
+          <button on:click={() => { viewDetailsForRoom(raum.devices[0].mac); push(`#/devicedata/${raum.devices[0].mac}`) }}>
             Daten ansehen
           </button>
         {:else}

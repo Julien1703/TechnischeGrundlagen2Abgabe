@@ -151,7 +151,7 @@ app.post("/add-esp-device", async (req, res) => {
 });
 
 // GET-Route, um alle Daten zu holen
-app.post("/raumdata", async (req, res) => {
+app.post("/data", async (req, res) => {
   console.log("calling /data endpoint");
   const authheader = req.headers.authorization;
   if(!authheader || ! authheader.split(' ')[1]) return res.status(401).send({error: 'Token ist ungültig'});

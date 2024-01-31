@@ -82,33 +82,27 @@
   }
 
   async function registerUser() {
-    // Check if the password matches the confirmation
-    if (!checkPasswordMatch()) {
-      console.error("Passwords do not match.");
-      return;
-    }
-
-    try {
-      const response = await axios.post("http://localhost:3001/register", {
-        username: $username,
-        password: password,
-        passwordconfirm: passwordconfirm,
-      });
-
-      console.log("Registration successful:", response);
-
-      const loginResponse = await axios.post("http://localhost:3001/login", {
-        username: $username,
-        password: password,
-      });
-
-      token.set(loginResponse.data.token);
-      isLoggedIn.set(true);
-      push("#/login");
-    } catch (error) {
-      console.error("Error during registration and login:", error);
-    }
+  // Check if the password matches the confirmation
+  if (!checkPasswordMatch()) {
+    console.error("Passwords do not match.");
+    return;
   }
+
+  try {
+    const response = await axios.post("http://localhost:3001/register", {
+      username: $username,
+      password: password,
+      passwordconfirm: passwordconfirm,
+    });
+
+    console.log("Registration successful:", response);
+
+    // Hier entfernen wir den Login-Prozess und leiten stattdessen direkt um
+    push("/login");
+  } catch (error) {
+    console.error("Error during registration:", error);
+  }
+}
 
   // axios interceptor for JWT:
   axios.interceptors.request.use((config) => {

@@ -17,7 +17,7 @@
       token.set(response.data.token);
       isLoggedIn.set(true);
       username.update(prev => usernameInput);
-      push("/raumdata");
+      push("#/raumdata");
     } catch (error) {
       console.error("Fehler beim Login:", error);
     }
